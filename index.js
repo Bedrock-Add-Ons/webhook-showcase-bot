@@ -26,7 +26,6 @@ client.on("message", message => {
 			const attachurl = message.attachments.first().url
 			return attachurl
 		}
-		console.log(url)
 		creationsWebhook.send(message.content, { username: membername, files: [url], avatarURL: message.author.avatarURL({ dynamic: true }) })
 	}
 	else {
