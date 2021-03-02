@@ -21,13 +21,12 @@ client.on("message", message => {
 		if (message.member.nickname == null) membername = message.author.username
 		else membername = message.member.nickname
 		if (message.attachments.array().length > 0) {
-			const url = getattach()
-			function getattach() {
-				const attachurl = message.attachments.first().url
-				return attachurl
-			}
-			console.log(url)
-			creationsWebhook.send(message.content, { username: membername, files: [url], avatarURL: message.author.avatarURL({ dynamic: true }) })
+			let url = []
+			message.attachments.forEach(attachment => {
+				const ImageLink = attachment.proxyURL;
+				url.push(ImageLink)
+			});
+			creationsWebhook.send(message.content, { username: membername, files: url, avatarURL: message.author.avatarURL({ dynamic: true }) })
 		}
 		else {
 			creationsWebhook.send(message.content, { username: membername, avatarURL: message.author.avatarURL({ dynamic: true }) })
