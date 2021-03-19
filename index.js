@@ -16,21 +16,19 @@ client.once("ready", () => console.log("Ready"))
 
 // move messages
 client.on("message", message => {
-	setTimeout(() => {
-		if (message.channel.id != config.showcase_id) return
-		if (message.member.nickname == null) membername = message.author.username
-		else membername = message.member.nickname
-		if (message.attachments.array().length > 0) {
-			let url = []
-			message.attachments.forEach(attachment => {
-				const ImageLink = attachment.proxyURL;
-				url.push(ImageLink)
-			});
-			creationsWebhook.send(message.content, { username: membername, files: url, avatarURL: message.author.avatarURL({ dynamic: true }) })
-		}
-		else {
-			creationsWebhook.send(message.content, { username: membername, avatarURL: message.author.avatarURL({ dynamic: true }) })
-		}
-
-	}, 5000)
+	if (message.channel.id != config.showcase_id) return
+	if (message.member.nickname == null) membername = message.author.username
+	else membername = message.member.nickname
+	if (message.attachments.array().length > 0) {
+		let url = []
+		message.attachments.forEach(attachment => {
+			const ImageLink = attachment.proxyURL;
+			url.push(ImageLink)
+		});
+		creationsWebhook.send(message.content, { username: membername, files: url, avatarURL: message.author.avatarURL({ dynamic: true }) })
+	}
+	else {
+		creationsWebhook.send(message.content, { username: membername, avatarURL: message.author.avatarURL({ dynamic: true }) })
+	}
+	message.react("👍"); // this is optional, adds an emoji as a reaction in the showcase channel
 })
