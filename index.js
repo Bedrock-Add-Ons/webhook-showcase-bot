@@ -25,10 +25,10 @@ client.on("message", message => {
 			const ImageLink = attachment.proxyURL;
 			url.push(ImageLink)
 		});
-		creationsWebhook.send(message.content, { username: membername, files: url, avatarURL: message.author.avatarURL({ dynamic: true }) })
+		creationsWebhook.send(message.content, { "username": membername, "files": url, "avatarURL": message.author.avatarURL({ dynamic: true }), allowedMentions: {parse: []} })
 	}
 	else {
-		creationsWebhook.send(message.content, { username: membername, avatarURL: message.author.avatarURL({ dynamic: true }) })
+		creationsWebhook.send(message.content, { "username": membername, "avatarURL": message.author.avatarURL({ dynamic: true }), allowedMentions: {parse: []} })
 	}
 	message.react("👍"); // this is optional, adds an emoji as a reaction in the showcase channel
 })
