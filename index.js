@@ -7,8 +7,9 @@ const client = new Discord.Client()
 client.login(config.token)
 
 // set up webhook
-const webhookID = config.discussion_webhook.substr(33, 18)
-const webhookToken = config.discussion_webhook.substr(52, 68)
+let splitWebhookURL = config.discussion_webhook.split("/")
+const webhookToken = splitWebhookURL.pop()
+const webhookID = splitWebhookURL.pop()
 const creationsWebhook = new Discord.WebhookClient(webhookID, webhookToken)
 
 // log when bot is running
