@@ -36,4 +36,5 @@ client.on("message", message => {
 		creationsWebhook.send(message.content, { "username": membername, "avatarURL": message.author.avatarURL({ dynamic: true }), allowedMentions: { parse: [] } })
 	}
 	message.react("👍"); // this is optional, adds an emoji as a reaction in the showcase channel
+	console.log("Showcase sent by " + message.author.username + '#' + message.author.discriminator + " in " + message.channel.name + ": " + message.content)
 })
