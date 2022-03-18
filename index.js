@@ -19,6 +19,7 @@ client.on("messageCreate", async message => {
 		const ImageLink = attachment.proxyURL
 		webhookData.files.push(ImageLink)
 	})
+	webhookData.content += " "
 	const messageObject = await creationsWebhook.send(webhookData)
 	console.log("Showcase sent by " + message.author.username + '#' + message.author.discriminator + " in " + message.channel.name + ": " + message.content)
 
